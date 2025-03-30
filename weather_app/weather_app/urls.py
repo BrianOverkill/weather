@@ -16,6 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('api/weather/', get_weather, name='get_weather'),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
