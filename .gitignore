@@ -1,7 +1,0 @@
-# Config files
-config.js
-
-# Other common files to ignore
-node_modules/
-.env
-.DS_Store
