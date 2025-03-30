@@ -1,9 +1,8 @@
-// ...existing code...
+import config from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Replace with a valid city or implement geolocation
     const city = 'London';
-    const apiKey = 'YOUR_API_KEY_HERE';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiUrl = `${config.baseUrl}/weather?q=${city}&appid=${config.weatherApiKey}&units=metric`;
 
     async function fetchWeather() {
         try {
@@ -31,4 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchWeather();
 });
-// ...existing code...
