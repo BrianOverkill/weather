@@ -3,32 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Modern Weather Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div class="search-box">
-            <input type="text" id="city-input" placeholder="Enter city name">
-            <button id="search-btn"><i class="fas fa-search"></i></button>
+        <div class="search-container">
+            <h1 class="title">Weather Dashboard</h1>
+            <div class="search-box">
+                <i class="fas fa-location-dot"></i>
+                <input type="text" id="city-input" placeholder="Search any city or country...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
         </div>
+
         <div class="weather-info">
             <div id="weather-display" class="hidden">
-                <div class="city-name">
-                    <h2 id="city"></h2>
+                <div class="main-weather">
+                    <div class="left-panel">
+                        <h2 id="city"></h2>
+                        <p id="date"></p>
+                        <div class="temp-display">
+                            <h1 id="temperature"></h1>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <p id="description"></p>
+                    </div>
+                    <div class="right-panel">
+                        <img id="weather-icon" src="" alt="Weather icon">
+                    </div>
                 </div>
-                <div class="weather-details">
-                    <img id="weather-icon" src="" alt="Weather icon">
-                    <h1 id="temperature"></h1>
-                    <p id="description"></p>
-                </div>
-                <div class="additional-info">
-                    <p>Humidity: <span id="humidity"></span></p>
-                    <p>Wind Speed: <span id="wind-speed"></span></p>
+
+                <div class="weather-details-container">
+                    <h3>Weather Details</h3>
+                    <div class="weather-grid">
+                        <div class="weather-item">
+                            <i class="fas fa-temperature-high"></i>
+                            <div class="item-details">
+                                <p>Feels Like</p>
+                                <span id="feels-like"></span>
+                            </div>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-tint"></i>
+                            <div class="item-details">
+                                <p>Humidity</p>
+                                <span id="humidity"></span>
+                            </div>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-wind"></i>
+                            <div class="item-details">
+                                <p>Wind Speed</p>
+                                <span id="wind-speed"></span>
+                            </div>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-compass"></i>
+                            <div class="item-details">
+                                <p>Pressure</p>
+                                <span id="pressure"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="loading" class="hidden">Loading...</div>
+            
+            <div id="loading" class="hidden">
+                <div class="loader"></div>
+                <p>Fetching weather data...</p>
+            </div>
             <div id="error" class="hidden"></div>
         </div>
     </div>

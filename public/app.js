@@ -20,11 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayWeather(data) {
+        const date = new Date();
         document.getElementById('city').textContent = data.name;
-        document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°C`;
+        document.getElementById('date').textContent = date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        document.getElementById('temperature').textContent = Math.round(data.main.temp);
         document.getElementById('description').textContent = data.weather[0].description;
+        document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
         document.getElementById('humidity').textContent = `${data.main.humidity}%`;
         document.getElementById('wind-speed').textContent = `${data.wind.speed} m/s`;
+        document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
         
         const iconCode = data.weather[0].icon;
         document.getElementById('weather-icon').src = 
