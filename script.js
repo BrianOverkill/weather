@@ -1,25 +1,27 @@
 import config from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const city = 'London';
-    const apiUrl = `${config.baseUrl}/weather?q=${city}&appid=${config.weatherApiKey}&units=metric`;
+    const searchInput = document.getElementById('city-search');
+    const searchBtn = document.getElementById('search-btn');
 
-    async function fetchWeather() {
+    async function fetchWeather(city) {
+        const apiUrl = `${config.baseUrl}/weather?q=${city}&appid=${config.weatherApiKey}&units=metric`;
+        
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('City not found');
             }
             const data = await response.json();
             displayWeather(data);
         } catch (error) {
             console.error('Fetch error: ', error);
-            document.getElementById('weather-container').innerHTML = '<p>Error loading weather data.</p>';
+            document.getElementById('weather-container').innerHTML = 
+                `<p>Error: ${error.message}. Please try again.</p>`;
         }
     }
 
     function displayWeather(data) {
-        // Update DOM with weather data
         const weatherContainer = document.getElementById('weather-container');
         weatherContainer.innerHTML = `
             <h2>${data.name}</h2>
@@ -28,5 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    fetchWeather();
+    // Event listeners
+    searchBtn.addEventListener('click', () => {
+        const city = searchInput.value.trim();
+        if (city) {
+            fetchWeather(city);
+        }
+    });
+
+    // Allow search on Enter key
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const city = searchInput.value.trim();
+            if (city) {
+                fetchWeather(city);
+            }
+        }
+    });
+
+    // Initial weather display for default city
+    fetchWeather('London');
 });
